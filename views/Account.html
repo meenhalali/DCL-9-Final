@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Profile Page</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="/assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload" >
+
+
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<span class="logo"><img src="/images/logo.svg" alt="" /></span>
+			<h1>Account Manager</h1>
+			</p>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="#intro" class="active">Profile Page</a></li>
+				<li><a href="#cta">Edit Profile</a></li>
+				<li><a href="#cta2">Logout</a></li>
+
+			</ul>
+		</nav>
+
+		<!-- Profile Main -->
+		<div id="main">
+
+			<section id="intro" class="main">
+				<div class="spotlight">
+					<div class="content">
+						<header class="major">
+							<h2>
+								<%= displayName %>
+							</h2>
+						</header>
+						<h3 style="font-weight: bold;"> Travel Interests</h3>
+						<% if (description !=null && description !="" ) { %>
+							<p>
+								<%= description %>
+							</p>
+							<% } else { %>
+								<p>No Description</p>
+								<% } %>
+
+									<p>
+
+									</p>
+					</div>
+					<span class="image">
+						<% if(picture){ %>
+							<img id="profilePic" src="<%= picture %>" alt="" style="height:318px;width:318px" />
+							<% } else { %>
+								<img id="profilePic" src="/images/default_picture.jpg" alt="" style="height:318px;width:318px" />
+								<% } %>
+					</span>
+				</div>
+			</section>
+
+			<!-- Edit Account Page -->
+
+			<section id="cta" class="main special">
+				<header class="major">
+					<h2>Edit Account</h2>
+
+				<form method="POST" id="formEdit" enctype='multipart/form-data'>
+					
+					<div class="row gtr-uniform">
+						<div class="col-12" >
+						<label for="profileImage">Profile Image</label>
+						<br>
+						<span class="image" >
+
+							<% if(picture){ %>
+								<img id="exampleImage" class="example" src="<%= picture %>" alt="" style="height:318px;width:318px"
+									 />
+								<% } else { %>
+									<img id="exampleImage2" class="example" src="/images/default_picture.jpg" alt=""
+										style="height:318px;width:318px" />
+									<% } %>
+						</span>
+						</div>
+					</div>
+						<script>
+	
+
+							function setExample() {
+
+								console.log(document.getElementById("profileImage"));
+
+								if (document.getElementById("exampleImage") !== null) {
+									document.getElementById("exampleImage").src = URL.createObjectURL(document.getElementById("profileImage").files[0]);
+								}
+								
+								if (document.getElementById("exampleImage2") !== null){
+									document.getElementById("exampleImage2").src = URL.createObjectURL(document.getElementById("profileImage").files[0]);
+								}
+
+							}
+						</script>
+					<div>
+						<input type="file" class="form-control" id="profileImage" name="profileImage"
+							onchange="setExample()" accept="image/*">
+
+					</div>
+					<div class="col-12">
+						<textarea name="description" id="description" placeholder="Enter your message" rows="5"><%= description %></textarea>
+					</div>
+					<button type="submit" id="save" name="save" class="btn btn-primary" >Save</button>
+				</form>
+					
+				</header>
+			</section>
+
+			
+			<!-- Logout Button -->
+
+			<section id="cta2" class="main special">
+				<header class="major">
+					<h2>Logout</h2>
+				</header>
+				<footer class="major">
+					<ul class="actions special">
+						<li><a class="button primary" onclick="logout()">Logout</a></li>
+					</ul>
+				</footer>
+			</section>
+
+			<script>
+				function logout(){
+					document.cookie = "id=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+					document.cookie = "email=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+					window.location.href = "http://"+window.location.hostname+":"+window.location.port;
+				}
+			</script>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">&copy; Airbnb Searcher 2023 </p>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
